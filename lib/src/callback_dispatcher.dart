@@ -6,11 +6,11 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-
 import 'package:geofencing/src/geofencing.dart';
 import 'package:geofencing/src/location.dart';
 
 void callbackDispatcher() {
+  @pragma('vm:entry-point')
   const MethodChannel _backgroundChannel =
       MethodChannel('plugins.flutter.io/geofencing_plugin_background');
   WidgetsFlutterBinding.ensureInitialized();
