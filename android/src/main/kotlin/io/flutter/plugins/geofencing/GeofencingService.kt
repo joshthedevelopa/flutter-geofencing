@@ -31,7 +31,7 @@ import io.flutter.embedding.engine.dart.DartExecutor.DartCallback
 import com.google.android.gms.location.GeofencingEvent
 
 class GeofencingService : MethodCallHandler, JobIntentService() {
-    private val queue = ArrayDeque<List<Any>>()
+    private val queue = ArrayDeque<List<Any?>>()
     private lateinit var mBackgroundChannel: MethodChannel
     private lateinit var mContext: Context
 
