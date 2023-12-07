@@ -160,7 +160,7 @@ class GeofencingManager {
           .invokeMethod('GeofencingPlugin.getRegisteredGeofenceIds'));
 
   /// Stop receiving geofence events for a given [GeofenceRegion].
-  static Future<bool> removeGeofence(GeofenceRegion region) async =>
+  static Future<bool> removeGeofence(GeofenceRegion? region) async =>
       (region == null) ? false : await removeGeofenceById(region.id);
 
   /// Stop receiving geofence events for an identifier associated with a
