@@ -52,7 +52,7 @@ class _MyAppState extends State<MyApp> {
 
   static void callback(List<String> ids, Location l, GeofenceEvent e) async {
     print('Fences: $ids Location $l Event: $e');
-    final SendPort send =
+    final SendPort? send =
         IsolateNameServer.lookupPortByName('geofencing_send_port');
     send?.send(e.toString());
   }
@@ -64,11 +64,11 @@ class _MyAppState extends State<MyApp> {
     print('Initialization done');
   }
 
-  String numberValidator(String value) {
+  String? numberValidator(String? value) {
     if (value == null) {
       return null;
     }
-    final num a = num.tryParse(value);
+    final num? a = num.tryParse(value);
     if (a == null) {
       return '"$value" is not a valid number';
     }
@@ -92,15 +92,15 @@ class _MyAppState extends State<MyApp> {
                       child: ElevatedButton(
                         child: const Text('Register'),
                         onPressed: () {
-                          if (latitude == null) {
-                            setState(() => latitude = 0.0);
-                          }
-                          if (longitude == null) {
-                            setState(() => longitude = 0.0);
-                          }
-                          if (radius == null) {
-                            setState(() => radius = 0.0);
-                          }
+                          // if (latitude == null) {
+                          //   setState(() => latitude = 0.0);
+                          // }
+                          // if (longitude == null) {
+                          //   setState(() => longitude = 0.0);
+                          // }
+                          // if (radius == null) {
+                          //   setState(() => radius = 0.0);
+                          // }
                           GeofencingManager.registerGeofence(
                                   GeofenceRegion('mtv', latitude, longitude,
                                       radius, triggers, androidSettings),
@@ -140,7 +140,7 @@ class _MyAppState extends State<MyApp> {
                       controller:
                           TextEditingController(text: latitude.toString()),
                       onChanged: (String s) {
-                        latitude = double.tryParse(s);
+                        latitude = double.tryParse(s) ?? 0;
                       },
                     ),
                     TextField(
@@ -150,7 +150,7 @@ class _MyAppState extends State<MyApp> {
                         controller:
                             TextEditingController(text: longitude.toString()),
                         onChanged: (String s) {
-                          longitude = double.tryParse(s);
+                          longitude = double.tryParse(s) ?? 0;
                         }),
                     TextField(
                         decoration: const InputDecoration(hintText: 'Radius'),
@@ -158,7 +158,7 @@ class _MyAppState extends State<MyApp> {
                         controller:
                             TextEditingController(text: radius.toString()),
                         onChanged: (String s) {
-                          radius = double.tryParse(s);
+                          radius = double.tryParse(s) ?? 0;
                         }),
                   ]))),
     );
